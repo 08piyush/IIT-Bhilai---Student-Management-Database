@@ -1,0 +1,96 @@
+<%- include('partials/header') %>
+
+<div class="container mt-5">
+  <h1>Login</h1>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Makes POST request to /login route -->
+          <form  id="loginForm" action="/login" method="POST">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="Email" class="form-control" name="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="Password" class="form-control" name="password">
+            </div>
+            <button type="submit" id="userLogin" class="btn btn-dark">Login</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-sm-4">
+      <div class="card">
+        <div class="card-body">
+          <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+            <i class="fab fa-google"></i>
+            Sign In with Google
+          </a>
+        </div>
+      </div>
+    </div> -->
+    <!-- <script src="node-rsa.min.js" type = "text/javascript"></script> -->
+
+
+    <script type="text/javascript">
+        const loginForm = document.querySelector("#loginForm");
+      
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const userEmail = document.querySelector("#Email").value;
+            const userPassword = document.querySelector("#Password").value;
+
+            console.log(userEmail, userPassword , " : userEmail ");
+
+            // var key = new NodeRSA();
+            // var key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCsFAdCy/2ff3jKPsVZzE5MXa+skCuuFF1omdgD0gsPB66cXTu4TrjViu+BNZK/DXFwzize+r0rNviuOAnhZwB5IWrq3S6Hok0breO6mp36MftSbVmwoGDx5VHqbSqojRnwbDJj144kNSVqNMsEVVx1Ks/eZmODHvdqW46xfCAyBQIDAQAB";
+            // key.importKey(publicKey, 'pkcs8-public-pem');
+
+
+        
+    // Encrypt the login information
+            // var encryptedEmail = key.encrypt(userEmail, 'base64');
+            // var encryptedPassword = key.encrypt(userPassword, 'base64');
+
+
+            // console.log("encrypted email passwd : ", encryptedEmail , encryptedPassword ); 
+            // Send the encrypted login information to the server
+            // var loginCredentials = {
+            //     email: encryptedEmail,
+            //     password: encryptedPassword
+            // };
+
+            var loginCredentials = {
+                email: "ZiGBHSFHKv+Rcj4TyQH1oFDMnrrFI3X+VkGKBFeuFXyXJwx5sL26UrUHtvyZyVsSDSeQ1RcdhHNUQKyXOc93/w=="
+                // password: "XskgcqYtdd0zGh+1L+oPyfUX7hRcd42zkHrzHvn2B2qrblm7aghokt8igZKpWDZo/v1lFGcHAO5G8ueY+7kCWg=="
+            };
+        
+        //     const loginCredentials = {
+        //   email: userEmail,
+        //   password: userPassword
+        // };
+            console.log("lc : ", loginCredentials);
+            const jsonString = JSON.stringify(loginCredentials);
+
+            console.log("json string : " , jsonString);
+        // const encrypted = key.encrypt(jsonString, 'base64');
+        // console.log('encrypted: ', encrypted);
+
+            const request = new XMLHttpRequest();
+            request.open("POST" ,"/login" );
+            request.setRequestHeader("Content-Type", "application/json");
+            request.send(jsonString);
+    });
+      
+    </script>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
